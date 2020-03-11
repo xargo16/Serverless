@@ -1,0 +1,175 @@
+<div id='contact-form-link' class="container my-5 contact-form-color" style="border-radius: 10px;">
+    <div class="row px-5 py-3">
+        <div class="col-md-6 col-sm-12">
+            <h1 class="text-center text-white">BOOK NOW</h1>
+            <form 
+                action="https://h7w8bledv1.execute-api.us-east-1.amazonaws.com/dev/contact-form" 
+                method="POST"
+                id="contact-form" 
+                name="contact-form"
+            >
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="name" class="text-white">Contact name*</label>
+                        <input
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            class="form-control"
+                            maxlength="50"
+                            required
+                        >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="date" class="text-white">Date of visit*</label>
+                        <input
+                            type="text" 
+                            id="date" 
+                            name="date" 
+                            class="form-control" 
+                            required
+                        >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="persons" class="text-white">Number of persons*</label>
+                        <input 
+                            type="text" 
+                            id="persons" 
+                            name="persons" 
+                            class="form-control"
+                            data-parsley-type="digits"
+                            maxlength="3"
+                            required
+                        >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="mobileNumber" class="text-white">Contact Number*</label>
+                        <input 
+                            type="text" 
+                            id="mobileNumber" 
+                            name="mobileNumber" 
+                            class="form-control"
+                            data-parsley-pattern="^[+-_ 0-9]+$"
+                            maxlength="15"
+                            required
+                        >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="email" class="text-white">Email address*</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-control"
+                            maxlength="254"
+                            required
+                        >
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <label for="email" class="text-white">Package</label>
+                        <select id="package" class="form-control" name="package">
+                            <option value="0">Choose your package</option>
+
+                            {% for group in site.data.contact_form_packages %}
+
+                                <optgroup label={{group.name}}>
+
+                                {% for item in group.items %}
+
+                                    <option value={{item.name}}>{{item.name}}</option>
+
+                                {% endfor %}
+
+                                </optgroup>
+
+                            {% endfor %}
+
+                        </select>
+                       
+                    
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label for="message" class="text-white">Message / Special Requirement</label>
+                        <textarea 
+                            type="text" 
+                            id="message" 
+                            name="message" 
+                            rows="2" 
+                            class="form-control md-textarea" 
+                            maxlength="255"
+                            placeholder="Any special requirements? Or send us any message..."
+                        ></textarea>
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <div class="col-12 text-center">
+                        <button id="send-enquiry" type="submit" class="btn btn-block text-white py-3">
+                            <img src="/assets/img/icons/envelope.svg" class="d-inline-block align-top" alt="">
+                            BOOK NOW / SEND
+                        </button>
+                        <div 
+                            id="contact-form-spinner" 
+                            style="display: none;" 
+                            class="spinner-border text-danger mt-4" 
+                            role="status"
+                        >
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <h5 class="text-center mt-4" id="contact-form-response"></h5>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-12 d-inline-block d-md-none mb-3">
+            <hr style="background-color:white">
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center text-white mt-2 mb-4">FIND US</h1>
+                    <h4 class="text-center text-white mt-2">
+                        Muelle de ribero, alto 10, Puerto banus 29660 Marbella, Spain
+                    </h4>
+                    <div class="map-container">
+                          
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3207.731870092412!2d-4.9527732!3d36.4881917!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDI5JzE2LjkiTiA0wrA1NycwOC40Ilc!5e0!3m2!1sen!2suk!4v1565549085225!5m2!1sen!2suk"
+                            frameborder="0" style="border:0" >
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 align-text-bottom">
+                    <h2 class="text-center text-white mt-2 mb-4">UNSURE WHAT PACKAGE TO BUY?</h2>  
+                    <div class="row">
+                        <div class="col-lg-6 col-12 mb-3">
+                            <a href="/packages/" class="btn btn-block text-white py-3" style="background-color:white;">
+                                <img src="/assets/img/icons/packages.svg" alt="packages">
+                                <span class="contact-form-text h5 pl-2">PACKAGES</span>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <a href="/stags/" class="btn btn-block text-white py-3" style="background-color:white;">
+                                <img src="/assets/img/icons/parties.svg" class="d-inline-block align-top" alt="">
+                                <span class="contact-form-text h5 pl-2">PARTIES</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

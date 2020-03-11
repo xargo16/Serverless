@@ -1,0 +1,27 @@
+
+
+service: contact-form
+provider:
+  name: aws
+  runtime: nodejs10.x
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ses:SendEmail"
+      Resource: ["*"]
+
+functions:
+  contactForm:
+    handler: handler.contactForm
+    events:
+      - http:
+          method: post
+          path: contact-form
+          cors: true
+  careerForm:
+    handler: handler.careerForm
+    events:
+      - http:
+          method: post
+          path: career-form
+          cors: true
